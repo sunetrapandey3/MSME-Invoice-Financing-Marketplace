@@ -1,12 +1,17 @@
-import { ethers } from "ethers";
-import abi from "./InvoiceNFT.json";
+import { getContract } from "../utils/contract";
 
-export const getContract = async () => {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
-  return new ethers.Contract(
-    "YOUR_CONTRACT_ADDRESS",
-    abi,
-    signer
+export default function UploadInvoice() {
+  const handleUpload = async () => {
+    const contract = await getContract();
+    console.log("Contract loaded:", contract);
+  };
+
+  return (
+    <button
+      onClick={handleUpload}
+      className="bg-green-600 text-white px-4 py-2 rounded"
+    >
+      Upload Invoice
+    </button>
   );
-};
+}
